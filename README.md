@@ -279,11 +279,6 @@ ai-ml-portfolio/
 
 ---
 
-## 📝 License
-
-MIT License — Feel free to use this template for your own portfolio!
-
----
 
 ## 🙏 Credits
 
