@@ -21,7 +21,8 @@
 
 | Dark Mode (Cyberpunk Neon) | Light Mode (Pastel Peach) |
 |---|---|
-| ![Dark Mode](https://via.placeholder.com/600x400/030014/00f0ff?text=Dark+Mode+🌙) | ![Light Mode](https://via.placeholder.com/600x400/fff5ee/e07850?text=Light+Mode+☀️) |
+| ![Dark Mode](<img width="1895" height="901" alt="image" src="https://github.com/user-attachments/assets/eb20912d-97b4-4f87-ba92-312135ac0221" />
+) | ![Light Mode](https://via.placeholder.com/600x400/fff5ee/e07850?text=Light+Mode+☀️) |
 
 > *Replace the placeholder URLs above with actual screenshots of your deployed site.*
 
