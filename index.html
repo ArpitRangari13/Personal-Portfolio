@@ -4,6 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arpit Rangari — AI/ML Engineer</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-calendar@latest/dist/github-calendar-responsive.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/github-calendar@latest/dist/github-calendar.min.js"></script>
+
+  <!-- GitHub Calendar init is handled later in the main script at the bottom -->
+
+  <!-- Slow-growing education timeline script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const timeline = document.getElementById('education-timeline');
+      if (!timeline) return;
+
+      const steps = Array.from(timeline.children);
+      let i = 0;
+      const interval = 2500; // show each step every 2.5 seconds
+
+      // Hide all steps initially
+      steps.forEach(step => step.style.opacity = 0);
+
+      function showNextStep() {
+        if (i < steps.length) {
+          steps[i].style.transition = 'opacity 0.8s';
+          steps[i].style.opacity = 1;
+          i++;
+          setTimeout(showNextStep, interval);
+        }
+      }
+      showNextStep();
+    });
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arpit Rangari — AI/ML Engineer</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -215,22 +248,55 @@
     .stat:last-child{border-right:none;}.stat:hover{background:rgba(0,240,255,.03);}
     .stat-lbl{font-size:.75rem;color:var(--muted);margin-top:.6rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
 
-    /* Scroll number ring */
-    .stat-ring-wrap{position:relative;width:100px;height:100px;margin:0 auto .5rem;}
-    .stat-ring{transform:rotate(-90deg);}
-    .stat-ring-bg{fill:none;stroke:rgba(0,240,255,.06);stroke-width:4;}
-    .stat-ring-fill{fill:none;stroke-width:4;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 2s cubic-bezier(.16,1,.3,1),stroke .3s;}
-    .stat-ring-wrap.counted .stat-ring-fill{stroke-dashoffset:var(--ring-offset);}
-    .stat-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--neon-blue),var(--neon-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:flex;align-items:baseline;line-height:1;}
+    /* Stat circles (numbers only — no SVG glow/progress) */
+    .stat-ring-wrap{
+      position:relative;
+      width:100px;
+      height:100px;
+      margin:0 auto .5rem;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:3px solid rgba(0,240,255,.18);
+      background:rgba(0,240,255,.03);
+      transition:transform .4s, border-color .4s, box-shadow .4s;
+    }
+    .stat-ring-wrap::after{
+      content:'';
+      position:absolute;
+      inset:-6px;
+      border-radius:50%;
+      opacity:0;
+      transition:opacity .8s,transform .8s;
+      background:radial-gradient(circle,rgba(0,240,255,.12),transparent 70%);
+      transform:scale(.6);
+      pointer-events:none;
+    }
+    .stat-ring-wrap.counted::after{opacity:1;transform:scale(1.15);} 
+
+    .stat-num{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      font-family:'Orbitron',sans-serif;
+      font-size:1.8rem;
+      font-weight:900;
+      background:linear-gradient(135deg,var(--neon-blue),var(--neon-purple));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      display:flex;
+      align-items:baseline;
+      line-height:1;
+      pointer-events:none;
+    }
     .stat-num .plus{font-size:1rem;margin-left:1px;opacity:.7;}
-    /* odometer digit roll */
+
+    /* odometer digit roll (keep) */
     .digit-roller{display:inline-block;height:1.8rem;overflow:hidden;position:relative;}
     .digit-roller-inner{display:flex;flex-direction:column;transition:transform 1.5s cubic-bezier(.16,1,.3,1);will-change:transform;}
     .digit-roller-inner span{display:block;height:1.8rem;line-height:1.8rem;text-align:center;min-width:.95rem;}
-    /* glow pulse on count */
-    .stat-ring-wrap.counted .stat-ring-fill{filter:drop-shadow(0 0 6px var(--neon-blue));}
-    .stat-ring-wrap::after{content:'';position:absolute;inset:-5px;border-radius:50%;opacity:0;transition:opacity .8s,transform .8s;background:radial-gradient(circle,rgba(0,240,255,.12),transparent 70%);transform:scale(.5);}
-    .stat-ring-wrap.counted::after{opacity:1;transform:scale(1.2);}
 
     /* ===== SKILL LOGOS GRID ===== */
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:1rem;}
@@ -712,13 +778,7 @@
           </div>
         </div>
 
-        <div class="edu-node" data-edu="3">
-          <div class="edu-icon"><i class="fas fa-brain"></i></div>
-          <div style="position:relative;"><div class="edu-dot"><div class="edu-dot-ring"></div></div></div>
-          <div class="edu-label">
-            
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -730,9 +790,69 @@
       <div class="timeline reveal" id="timeline">
         <div class="timeline-track"></div>
         <div class="timeline-fill" id="tl-fill"></div>
+
         <div class="tl-item" data-tl><div class="tl-dot"></div><div class="tl-date">DEC 2025  — MAY 2026</div><div class="tl-title">HackerRank Campus Crew Ambasador</div><div class="tl-company">HackerRank</div><div class="tl-desc">Connected HackerRank to our campus, created HackerRank Club in our college and organize events in association with the HackerRank.</div></div>
         <div class="tl-item" data-tl><div class="tl-dot"></div><div class="tl-date">2021 — 2023</div><div class="tl-title">ML Engineer</div><div class="tl-company">DataMind Labs</div><div class="tl-desc">NLP pipelines serving 2M+ daily requests. 60% latency reduction via quantization.</div></div>
         <div class="tl-item" data-tl><div class="tl-dot"></div><div class="tl-date">2019 — 2021</div><div class="tl-title">Research Assistant — AI Lab</div><div class="tl-company">Stanford University</div><div class="tl-desc">5 papers at NeurIPS & CVPR. Open-source TF models used by 10K+ researchers.</div></div>
+
+
+        <div class="tl-item" data-tl>
+
+          <div class="tl-dot"></div>
+          <div class="tl-date">Dec 2025 — May 2026</div>
+          <div class="tl-title">HackerRank Campus Crew Ambassador</div>
+          <div class="tl-company">HackerRank</div>
+          <div class="tl-desc">Currently representing HackerRank on campus, promoting coding culture, driving student sign-ups via college emails, and building peer engagement networks.</div>
+        </div>
+
+        <div class="tl-item" data-tl>
+          <div class="tl-dot"></div>
+          <div class="tl-date">Jan 2025 — Mar 2025</div>
+          <div class="tl-title">AIML Virtual Internship</div>
+          <div class="tl-company">Edu Skill</div>
+          <div class="tl-desc">The AIML (Artificial Intelligence and Machine Learning) Virtual Internship by Edu Skill offers hands-on experience in AI and ML technologies. Received the Certificate of completion of a 10-week internship.</div>
+        </div>
+
+        <div class="tl-item" data-tl>
+          <div class="tl-dot"></div>
+          <div class="tl-date">Feb 2025</div>
+          <div class="tl-title">Introduction to Cloud Job Simulation</div>
+          <div class="tl-company">Forge-Datacom</div>
+          <div class="tl-desc">Hands-on cloud simulation: registering applications on the cloud and creating GitHub Action workflows to build practical confidence in cloud technologies.</div>
+        </div>
+
+        <div class="tl-item" data-tl>
+          <div class="tl-dot"></div>
+          <div class="tl-date">Mar 2025 — Apr 2025</div>
+          <div class="tl-title">IT Solutions Internship</div>
+          <div class="tl-company">Codtech IT Solutions</div>
+          <div class="tl-desc">Developed and optimized machine learning models for real-world use cases. Worked on data preprocessing, feature engineering, and model evaluation with Python and TensorFlow.</div>
+        </div>
+
+        <div class="tl-item" data-tl>
+          <div class="tl-dot"></div>
+          <div class="tl-date">Mar 2025 — Apr 2025</div>
+          <div class="tl-title">Student Ambassador</div>
+          <div class="tl-company">Internshala</div>
+          <div class="tl-desc">Promoted Internshala’s internships and training programs on campus. Conducted peer engagement activities, shared opportunities, and boosted participation via online and offline outreach.</div>
+        </div>
+
+        <div class="tl-item" data-tl>
+          <div class="tl-dot"></div>
+          <div class="tl-date">Mar 2025 — Apr 2025</div>
+          <div class="tl-title">ML Projects</div>
+          <div class="tl-company">Saiket Systems</div>
+          <div class="tl-desc">Worked on real-world machine learning projects, developing and optimizing ML models for business applications. Contributed to preprocessing, feature engineering, evaluation, and AI-driven solutions.</div>
+        </div>
+
+        <div class="tl-item" data-tl>
+          <div class="tl-dot"></div>
+          <div class="tl-date">2025</div>
+          <div class="tl-title">Hamari Pahchan — NGO</div>
+          <div class="tl-company">Hamari Pahchan</div>
+          <div class="tl-desc">Contributed to social initiatives focused on education, health, and women’s empowerment. Assisted with awareness campaigns, fundraising drives, administrative coordination, and content promotion.</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -742,8 +862,26 @@
     <div class="section-particles" id="sp-contact"></div>
     <div class="section-inner" style="position:relative;z-index:1;">
       <div class="reveal" style="margin-bottom:3rem;"><p class="section-label">Connect</p><h2 class="section-title">Let's <span>Collaborate</span></h2></div>
+
+      <div class="reveal" style="margin:0 auto 2.5rem;max-width:900px;">
+        <div style="background:var(--surface2);border:1px solid rgba(0,240,255,.12);border-radius:18px;padding:1.5rem 1.5rem;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
+            <div>
+              <div class="section-label" style="margin-bottom:.35rem;">GitHub</div>
+              <div style="font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.2rem;">Contribution Heatmap</div>
+              <div style="color:var(--muted);font-size:.9rem;line-height:1.6;">Visualize recent activity for <span style="color:var(--neon-blue);font-family:'JetBrains Mono',monospace;">@arpit-rangari</span>.</div>
+            </div>
+            <a href="https://github.com/arpit-rangari" target="_blank" class="btn-neon" style="padding:.6rem 1.2rem;">
+              <i class="fab fa-github"></i> Open Profile
+            </a>
+          </div>
+          <div id="github-calendar" style="min-height:190px;"></div>
+        </div>
+      </div>
+
       <div class="contact-grid">
         <div class="reveal">
+
           <div class="c-info"><div class="c-icon"><i class="fas fa-envelope"></i></div><div><div class="c-label" style="font-size:.7rem;color:var(--muted);">Email</div><div class="c-val" style="font-weight:600;">arpitrangari@email.com</div></div></div>
           <div class="c-info"><div class="c-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="c-label" style="font-size:.7rem;color:var(--muted);">Location</div><div class="c-val" style="font-weight:600;">San Francisco, CA</div></div></div>
           <div class="c-info"><div class="c-icon"><i class="fas fa-calendar-check"></i></div><div><div class="c-label" style="font-size:.7rem;color:var(--muted);">Status</div><div class="c-val" style="font-weight:600;">Open for consulting & full-time</div></div></div>
@@ -822,38 +960,36 @@ addEventListener('scroll',()=>{
 function toggleMenu(){const m=document.getElementById('mob');m.classList.toggle('open');document.getElementById('hb-icon').className=m.classList.contains('open')?'fas fa-times':'fas fa-bars';}
 const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-// SCROLL NUMBER EFFECT — ring + odometer
+// SCROLL NUMBER EFFECT — numbers only (no ring/progress)
 const ringObs=new IntersectionObserver(entries=>{entries.forEach(entry=>{
   if(!entry.isIntersecting)return;
   const wrap=entry.target;
   if(wrap.classList.contains('counted'))return;
   wrap.classList.add('counted');
-  const target=+wrap.dataset.target;
-  const max=+wrap.dataset.max;
-  const circumference=2*Math.PI*45;
-  const pct=target/max;
-  const offset=circumference*(1-pct);
-  wrap.style.setProperty('--ring-offset',offset);
+
   wrap.querySelectorAll('.digit-roller').forEach(roller=>{
     const to=+roller.dataset.to;
     const inner=roller.querySelector('.digit-roller-inner');
     const digitH=parseFloat(getComputedStyle(inner.children[0]).height);
     setTimeout(()=>{inner.style.transform=`translateY(-${to*digitH}px)`;},200);
   });
-  for(let i=0;i<12;i++){
+
+  // optional tiny confetti particles around the circle (kept simple)
+  for(let i=0;i<8;i++){
     const p=document.createElement('div');
     p.style.cssText=`position:absolute;width:4px;height:4px;border-radius:50%;background:${wrap.dataset.color};top:50%;left:50%;pointer-events:none;z-index:5;opacity:1;`;
     wrap.appendChild(p);
     const angle=Math.random()*Math.PI*2;
-    const dist=40+Math.random()*30;
+    const dist=32+Math.random()*18;
     const ddx=Math.cos(angle)*dist;
     const ddy=Math.sin(angle)*dist;
     p.animate([
       {transform:'translate(-50%,-50%) scale(1)',opacity:1},
       {transform:`translate(calc(-50% + ${ddx}px),calc(-50% + ${ddy}px)) scale(0)`,opacity:0}
-    ],{duration:800+Math.random()*400,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards',delay:300+Math.random()*300});
-    setTimeout(()=>p.remove(),1600);
+    ],{duration:650+Math.random()*350,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards',delay:200+Math.random()*250});
+    setTimeout(()=>p.remove(),1400);
   }
+
   ringObs.unobserve(wrap);
 });},{threshold:0.5});
 document.querySelectorAll('.stat-ring-wrap').forEach(el=>ringObs.observe(el));
@@ -960,17 +1096,19 @@ function handleSubmit(e){e.preventDefault();const m=document.getElementById('fm'
 const RESUME={
   name:"Arpit Rangari",location:"Nagpur, Maharashta India, CA",email:"arpitrangari@email.com",
   title:"ML Engineer",
-  summary:"AI/ML Engineer with 1 years of experience in deep learning, computer vision, NLP, and edge AI. B.Tech in Computer Science and Engineering Artificial Intelligence and Machine Learning. Published 12 papers at NeurIPS and CVPR. Built production ML systems serving millions of users.",
-  skills:"TensorFlow, PyTorch, TensorFlow.js, Python, JavaScript, C++, CUDA, Docker, Kubernetes, AWS SageMaker, GCP Vertex AI, MLflow, Weights & Biases, Hugging Face, FastAPI, Apache Spark, ONNX, OpenCV, Pandas, NumPy, JAX, LangChain, Scikit-Learn, Ray, Streamlit, SQL, Git",
+  summary:"AI/ML Engineer with experience in deep learning, computer vision, NLP, and ML projects. B.Tech in Computer Science and Engineering (AI & ML).",
+  skills:"TensorFlow, PyTorch, Python, TensorFlow.js, JavaScript, C++, Docker, Kubernetes, AWS, GCP, MLflow, W&B, Hugging Face, FastAPI, Apache Spark, ONNX, OpenCV, Pandas, NumPy, Scikit-Learn, Ray, Streamlit, SQL, Git",
   experience:[
-    {role:"Campus Crew Ambasador",company:"HackerRank",period:"Dec 2025 - May 2026",desc:"With the initiative of campus crew i connect my campus with hacker by becomming first hackerrank campus crew ambasador and estbablished hackerank club in my college."},
-    {role:"ML Engineer",company:"DataMind Labs",period:"2021-2023",desc:"Developed NLP pipelines for sentiment analysis serving 2M+ daily requests. Reduced inference latency by 60% through model quantization and ONNX optimization."},
-    {role:"Research Assistant",company:"Stanford University AI Lab",period:"2019-2021",desc:"Published 5 papers on GANs and self-supervised learning at NeurIPS and CVPR. Contributed to open-source TensorFlow models used by 10K+ researchers."}
+    {role:"HackerRank Campus Crew Ambassador",company:"HackerRank",period:"Dec 2025 - May 2026",desc:"Currently representing HackerRank on campus, promoting coding culture, driving student sign-ups via college emails, and building peer engagement networks."},
+    {role:"AIML Virtual Internship",company:"Edu Skill",period:"Jan 2025 - Mar 2025",desc:"The AIML (Artificial Intelligence and Machine Learning) Virtual Internship by Edu Skill offers hands-on experience in AI and ML technologies. Interns work on real-world projects, receive mentorship from industry experts, and gain valuable skills to advance their careers in AI. Received the Certificate of completion of a 10-week internship."},
+    {role:"Introduction to Cloud Job Simulation",company:"Forge-Datacom",period:"Feb 2025",desc:"Forge-Datacom: Introduction to Cloud Job Simulation offers hands-on experience in cloud computing. Participants register applications on the cloud and create GitHub Action workflows. Self-paced to build practical confidence in cloud technologies."},
+    {role:"IT Solutions Internship",company:"Codtech IT Solutions",period:"Mar 2025 - Apr 2025",desc:"Worked on developing and optimizing machine learning models for real-world use cases. Assisted in data preprocessing, feature engineering, and model evaluation. Gained hands-on experience with Python, TensorFlow, and key AI/ML tools."},
+    {role:"Student Ambassador",company:"Internshala",period:"Mar 2025 - Apr 2025",desc:"Promoted Internshala’s internships and training programs on campus. Conducted peer engagement activities, shared internship opportunities, and boosted student participation via online and offline outreach. Developed communication, marketing, and leadership skills."},
+    {role:"ML Projects",company:"Saiket Systems",period:"Mar 2025 - Apr 2025",desc:"Worked on real-world machine learning projects, developing and optimizing ML models for business applications. Contributed to data preprocessing, feature engineering, and model evaluation. Gained experience with Python, TensorFlow, and AI frameworks while collaborating to build AI-driven solutions."},
+    {role:"Hamari Pahchan",company:"Hamari Pahchan – NGO",period:"2025",desc:"Contributed to social initiatives focused on education, health, and women’s empowerment. Assisted in awareness campaigns, fundraising drives, and administrative coordination. Created and promoted content on social media to boost outreach. Strengthened communication, teamwork, and organizational skills while deepening understanding of social impact and community service."}
   ],
-  education:{degree:"M.S. Computer Science — AI Specialization",school:"Stanford University",period:"2017-2019",gpa:"3.95/4.0",thesis:"Self-Supervised Representation Learning for Medical Imaging"},
-  projects:["NeuroVision (medical image segmentation, U-Net, 97.3% accuracy)","LinguaFormer (multi-language transformer, 25+ languages)","EdgeSense (IoT anomaly detection, TF Lite, 99.1% precision)","GazeTracker.js (browser gaze tracking with TF.js)","AutoML Pipeline (neural architecture search)","SentimentStream (real-time tweet analysis with BERT+Spark)"],
-  awards:"8 awards including Best Paper at CVPR Workshop, Google AI Research Grant, Stanford CS Department Fellowship",
-  publications:"12 publications at top venues including NeurIPS, CVPR, ICML"
+  education:{degree:"B.Tech (CSE) — AI & ML",school:"Your University",period:"2021-2025",gpa:"—",thesis:"—"},
+  projects:["NeuroVision (medical image segmentation, U-Net)","LinguaFormer (multi-language transformer)","EdgeSense (IoT anomaly detection, TF Lite)","GazeTracker.js (browser gaze tracking with TF.js)","AutoML Pipeline (neural architecture search)","SentimentStream (real-time tweet analysis)"]
 };
 
 function chatAnswer(q){
@@ -997,6 +1135,20 @@ function sendChat(){const inp=document.getElementById('chat-input');const q=inp.
   setTimeout(()=>{const bMsg=document.createElement('div');bMsg.className='chat-msg bot';bMsg.textContent=chatAnswer(q);msgs.appendChild(bMsg);msgs.scrollTop=msgs.scrollHeight;},500);
   msgs.scrollTop=msgs.scrollHeight;
 }
+
+// GitHub heatmap (renders into the Connect section's #github-calendar)
+(function initGitHubHeatmap(){
+  document.addEventListener('DOMContentLoaded', function(){
+    const el = document.getElementById('github-calendar');
+    if(!el || typeof GitHubCalendar !== 'function') return;
+    try{
+      GitHubCalendar('#github-calendar', 'arpit-rangari', { responsive: true, tooltips: true });
+    }catch(e){
+      // fail silently to avoid breaking the rest of the page
+      console.warn('GitHub heatmap init failed', e);
+    }
+  });
+})();
 
 // RESPONSIVE
 const ms=document.createElement('style');ms.textContent='@media(max-width:900px){.about-g{grid-template-columns:1fr !important;}.edu-timeline{flex-wrap:wrap;gap:2rem;justify-content:center;}.edu-line,.edu-fill{display:none;}.edu-node{flex:0 0 45%;opacity:1!important;transform:none!important;}}';document.head.appendChild(ms);
