@@ -592,7 +592,7 @@
           <p style="color:var(--muted);line-height:1.9;margin:1.5rem 0;">5+ years building production ML systems — from CNNs for medical imaging to transformer models for NLP and real-time edge AI. Published at NeurIPS & CVPR. Stanford M.S. in CS.</p>
           <p style="color:var(--muted);line-height:1.9;">Currently exploring browser-based ML with TensorFlow.js — bringing intelligence directly to users without cloud dependency.</p>
           <div style="display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap;">
-            <span class="tag"><i class="fas fa-map-marker-alt"></i> San Francisco</span>
+            <span class="tag"><i class="fas fa-map-marker-alt"></i> India</span>
             <span class="tag" style="border-color:rgba(191,90,242,.3);color:var(--neon-purple);"><i class="fas fa-briefcase"></i> Open to Work</span>
             <span class="tag" style="border-color:rgba(48,209,88,.3);color:var(--neon-green);"><i class="fas fa-graduation-cap"></i> Stanford M.S.</span>
           </div>
@@ -883,7 +883,7 @@
         <div class="reveal">
 
           <div class="c-info"><div class="c-icon"><i class="fas fa-envelope"></i></div><div><div class="c-label" style="font-size:.7rem;color:var(--muted);">Email</div><div class="c-val" style="font-weight:600;">arpitrangari@email.com</div></div></div>
-          <div class="c-info"><div class="c-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="c-label" style="font-size:.7rem;color:var(--muted);">Location</div><div class="c-val" style="font-weight:600;">San Francisco, CA</div></div></div>
+          <div class="c-info"><div class="c-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="c-label" style="font-size:.7rem;color:var(--muted);">Location</div><div class="c-val" style="font-weight:600;">India</div></div></div>
           <div class="c-info"><div class="c-icon"><i class="fas fa-calendar-check"></i></div><div><div class="c-label" style="font-size:.7rem;color:var(--muted);">Status</div><div class="c-val" style="font-weight:600;">Open for consulting & full-time</div></div></div>
           <div style="display:flex;gap:.6rem;margin-top:2rem;">
             <a href="#" class="social-link"><i class="fab fa-github"></i></a><a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-link"><i class="fab fa-twitter"></i></a><a href="#" class="social-link"><i class="fab fa-kaggle"></i></a>
@@ -1094,7 +1094,7 @@ function handleSubmit(e){e.preventDefault();const m=document.getElementById('fm'
 
 // CHATBOT
 const RESUME={
-  name:"Arpit Rangari",location:"Nagpur, Maharashta India, CA",email:"arpitrangari@email.com",
+  name:"Arpit Rangari",location:"India",email:"arpitrangari@email.com",
   title:"ML Engineer",
   summary:"AI/ML Engineer with experience in deep learning, computer vision, NLP, and ML projects. B.Tech in Computer Science and Engineering (AI & ML).",
   skills:"TensorFlow, PyTorch, Python, TensorFlow.js, JavaScript, C++, Docker, Kubernetes, AWS, GCP, MLflow, W&B, Hugging Face, FastAPI, Apache Spark, ONNX, OpenCV, Pandas, NumPy, Scikit-Learn, Ray, Streamlit, SQL, Git",
@@ -1125,7 +1125,7 @@ function chatAnswer(q){
   if(ql.match(/locat|where|city|live/))return`📍 Arpit is based in ${RESUME.location}.`;
   if(ql.match(/resume|cv|download/))return`📄 You can download Arpit's resume by clicking the green "Resume" button in the hero section, or I can tell you about any specific section!`;
   if(ql.match(/tensorflow\.js|tfjs|browser|demo/))return`Arpit is passionate about browser-based ML with TensorFlow.js! Check out the interactive TF.js Lab on this page where you can train a neural network live in your browser. He also built GazeTracker.js using TF.js + WebRTC.`;
-  if(ql.match(/avail|hire|freelance|consult/))return`✅ Arpit is currently open for both consulting and full-time opportunities. He's based in San Francisco but open to remote work. Reach out at ${RESUME.email}!`;
+  if(ql.match(/avail|hire|freelance|consult/))return`✅ Arpit is currently open for both consulting and full-time opportunities. He's based in India and open to remote work. Reach out at ${RESUME.email}!`;
   return`I can answer questions about Arpit's:\n\n• Skills & tech stack\n• Work experience\n• Education\n• Projects\n• Publications & awards\n• Contact info\n\nWhat would you like to know? 😊`;
 }
 
