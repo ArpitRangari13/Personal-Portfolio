@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +45,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
   <style>
-    :root{--neon-blue:#00f0ff;--neon-purple:#bf5af2;--neon-pink:#ff2d55;--neon-green:#30d158;--neon-orange:#ff9f0a;--dark:#030014;--surface:#0a0a1a;--surface2:#12122a;--text:#e0e0ff;--muted:#7a7aaa;}
+:root{--neon-blue:#00f0ff;--neon-purple:#bf5af2;--neon-pink:#ff2d55;--neon-green:#30d158;--neon-orange:#ff9f0a;--dark:#030014;--surface:#0a0a1a;--surface2:#12122a;--text:#e0e0ff;--muted:#7a7aaa;}
+
+
+
+
+
     /* ===== LIGHT MODE — Pastel Peach ===== */
     body.light{--neon-blue:#e07850;--neon-purple:#c06090;--neon-pink:#d04070;--neon-green:#60a060;--neon-orange:#d09040;--dark:#fff5ee;--surface:#ffeedd;--surface2:#ffddc8;--text:#3a2520;--muted:#8a6a5a;}
     body.light ::selection{background:#e07850;color:#fff;}
@@ -589,6 +595,7 @@
         <div class="reveal">
           <p class="section-label">About Me</p>
           <h2 class="section-title"><span>Arpit Rangari</span></h2>
+
           <p style="color:var(--muted);line-height:1.9;margin:1.5rem 0;">3rd year B.Tech (Artificial Intelligence and Machine Learning) student at SB Jain Institute of Technology Management and Research (SBJITMR) with an excellent academic record (CGPA: 9.23/10). Keen interest in information security—especially web application security—along with practical ML exposure.</p>
           <p style="color:var(--muted);line-height:1.9;">Building projects in AI/ML, computer vision, and predictive modeling, with hands-on internship experience across cloud, ML model development, and campus ambassador roles.</p>
           <div style="display:flex;gap:.75rem;margin-top:2rem;flex-wrap:wrap;">
@@ -605,7 +612,11 @@
                   <circle class="stat-ring-bg" cx="50" cy="50" r="45"/>
                   <circle class="stat-ring-fill" cx="50" cy="50" r="45" stroke="var(--neon-blue)"/>
                 </svg>
-                <div class="stat-num"><span class="digit-roller" data-to="9"><span class="digit-roller-inner"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+                <div class="stat-num" style="font-size:1.65rem;">
+                  <span>9.23</span>
+                </div>
+
+
               </div>
               <div class="stat-lbl">CGPA (9.23)</div>
             </div>
@@ -615,7 +626,14 @@
                   <circle class="stat-ring-bg" cx="50" cy="50" r="45"/>
                   <circle class="stat-ring-fill" cx="50" cy="50" r="45" stroke="var(--neon-purple)"/>
                 </svg>
-                <div class="stat-num"><span class="digit-roller" data-to="7"><span class="digit-roller-inner"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></span></span></div>
+                <div class="stat-num" style="gap:.15rem;">
+                  <span class="digit-roller" data-to="7">
+                    <span class="digit-roller-inner">
+                      <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                    </span>
+                  </span>
+                </div>
+
               </div>
               <div class="stat-lbl">Internships</div>
             </div>
@@ -625,7 +643,14 @@
                   <circle class="stat-ring-bg" cx="50" cy="50" r="45"/>
                   <circle class="stat-ring-fill" cx="50" cy="50" r="45" stroke="var(--neon-pink)"/>
                 </svg>
-                <div class="stat-num"><span class="digit-roller" data-to="6"><span class="digit-roller-inner"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></span></span></div>
+                <div class="stat-num" style="gap:.15rem;">
+                  <span class="digit-roller" data-to="6">
+                    <span class="digit-roller-inner">
+                      <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                    </span>
+                  </span>
+                </div>
+
               </div>
               <div class="stat-lbl">Projects</div>
             </div>
@@ -635,7 +660,14 @@
                   <circle class="stat-ring-bg" cx="50" cy="50" r="45"/>
                   <circle class="stat-ring-fill" cx="50" cy="50" r="45" stroke="var(--neon-green)"/>
                 </svg>
-                <div class="stat-num"><span class="digit-roller" data-to="4"><span class="digit-roller-inner"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></span></span></div>
+                <div class="stat-num" style="gap:.15rem;">
+                  <span class="digit-roller" data-to="4">
+                    <span class="digit-roller-inner">
+                      <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                    </span>
+                  </span>
+                </div>
+
               </div>
               <div class="stat-lbl">Achievements</div>
             </div>
@@ -791,6 +823,7 @@
         <div class="edu-node" data-edu="1">
           <div class="edu-icon"><i class="fas fa-book-open"></i></div>
           <div style="position:relative;"><div class="edu-dot"><div class="edu-dot-ring"></div></div></div>
+
           <div class="edu-label">
             <div class="edu-degree">12th (Senior Secondary)</div>
             <div class="edu-school">CBSE Board</div>
@@ -930,10 +963,16 @@
 
   <footer class="footer">
     <p class="footer-text">© <span id="year"></span> Arpit Rangari — Built with ❤️ by Arpit 🧠</p>
-    <div style="margin-top:.75rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--muted);">
-      <span>Live visitors: </span><span id="liveVisitors">0</span>
-      <span style="opacity:.7;"> | </span>
-      <span>Total visitors: </span><span id="totalVisitors">0</span>
+    <div style="margin-top:.75rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:.9rem;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:.45rem;">
+        <span>Live visitors: </span><span id="liveVisitors">0</span>
+        <span style="opacity:.7;"> | </span>
+        <span>Total visitors: </span><span id="totalVisitors">0</span>
+        <button type="button" id="toggleTotalBtn" onclick="toggleTotalVisitors()" aria-label="Toggle total visitors" style="margin-left:.6rem;width:34px;height:30px;padding:0;border-radius:10px;border:1px solid rgba(0,240,255,.18);background:rgba(0,240,255,.06);color:var(--neon-blue);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-eye" id="toggleTotalIcon" style="font-size:.95rem;"></i>
+        </button>
+
+      </div>
     </div>
   </footer>
 
@@ -1194,6 +1233,7 @@ function sendChat(){const inp=document.getElementById('chat-input');const q=inp.
 
   const liveEl=document.getElementById('liveVisitors');
   const totalEl=document.getElementById('totalVisitors');
+  const toggleBtn=document.getElementById('toggleTotalBtn');
   const keyTotal='bb_total_visitors';
   const keyLive='bb_live_visitors';
   const keySession='bb_session_id';
@@ -1201,11 +1241,37 @@ function sendChat(){const inp=document.getElementById('chat-input');const q=inp.
   const now=Date.now();
   const ttlMs=60*1000; // 1 minute window for "live"
 
-  // total visitors (localStorage)
+  // total visitors (localStorage) - starts from 50 if fresh
   let total=0;
   try{ total=parseInt(localStorage.getItem(keyTotal)||'0',10); }catch(e){}
+  if(!total || total<50){
+    total=50;
+  }
   total += 1;
   try{ localStorage.setItem(keyTotal,String(total)); }catch(e){}
+
+  // hide/show behavior
+  window.toggleTotalVisitors=function(){
+    if(!totalEl || !toggleBtn) return;
+    const isHidden=totalEl.dataset.hidden==='1';
+    if(isHidden){
+      totalEl.style.display='inline';
+      toggleBtn.textContent='Hide';
+      totalEl.dataset.hidden='0';
+    }else{
+      totalEl.style.display='none';
+      toggleBtn.textContent='Unhide';
+      totalEl.dataset.hidden='1';
+    }
+  };
+
+  // default: visible; keep dataset in sync
+  if(totalEl){
+    totalEl.dataset.hidden='0';
+  }
+  if(toggleBtn){
+    toggleBtn.textContent='Hide';
+  }
 
   // live visitors using session heartbeats
   let sessionId='';
@@ -1214,6 +1280,7 @@ function sendChat(){const inp=document.getElementById('chat-input');const q=inp.
     sessionId=String(Math.random()).slice(2)+String(Math.random()).slice(2);
     try{ sessionStorage.setItem(keySession,sessionId); }catch(e){}
   }
+
 
   // registry stored in localStorage: { sessionId: lastSeen }
   function readRegistry(){
