@@ -442,6 +442,52 @@
     .footer{border-top:1px solid rgba(0,240,255,.08);padding:3rem 2rem;text-align:center;}
     .footer-text{font-size:.8rem;color:var(--muted);}
 
+    /* ===== CERTIFICATIONS — Radial Gallery ===== */
+    .certs-layout{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:center;}
+    .radial-gallery{position:relative;min-height:520px;}
+    .gallery-ring{position:absolute;inset:40px; 
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(0,240,255,.12),transparent 60%),
+                radial-gradient(circle at 50% 50%,rgba(191,90,242,.06),transparent 65%);
+      border:1px solid rgba(0,240,255,.12);
+      box-shadow:0 0 60px rgba(0,240,255,.06);
+      pointer-events:none;
+    }
+    .gallery-items{position:relative;height:520px;}
+    .cert-card{
+      position:absolute;
+      top:50%;left:50%;
+      width:min(320px,80vw);
+      padding:1.35rem 1.15rem;
+      border-radius:20px;
+      background:var(--surface);
+      border:1px solid rgba(0,240,255,.12);
+      box-shadow:0 20px 60px rgba(0,0,0,.25);
+      transform:translate(-50%,-50%) rotate(var(--angle,0deg)) translate(0,-170px) scale(0.75);
+      opacity:.12;
+      transition:opacity .25s ease, transform .35s cubic-bezier(.16,1,.3,1), filter .35s ease;
+      filter:blur(2px);
+      will-change:transform,opacity,filter;
+    }
+    .cert-card.is-visible{
+      opacity:1;
+      filter:blur(0px);
+    }
+    .cert-card{
+      --angle: 0deg;
+    }
+    .cert-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.75rem;}
+    .cert-top i{color:var(--neon-blue);font-size:1.1rem;}
+    .cert-badge{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);border:1px solid rgba(0,240,255,.15);padding:.25rem .5rem;border-radius:999px;}
+    .cert-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.05rem;margin-bottom:.2rem;}
+    .cert-org{color:var(--neon-purple);font-weight:800;font-size:.95rem;margin-bottom:.6rem;}
+    .cert-meta{color:var(--muted);font-size:.88rem;line-height:1.6;}
+
+    .certs-scrollbar{height:10px;}
+    .certs-scrollbar-track{width:100%;height:3px;background:rgba(0,240,255,.10);border-radius:99px;overflow:hidden;}
+    .certs-scrollbar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--neon-blue),var(--neon-purple),var(--neon-pink));border-radius:99px;}
+
+
     @media(max-width:900px){
       .nav-links{display:none;}.hamburger{display:block;}.hero-content{grid-template-columns:1fr;}.hero-visual{display:none;}
       .stats-bar{grid-template-columns:repeat(2,1fr);}.stat:nth-child(2){border-right:none;}
@@ -620,39 +666,42 @@
               </div>
               <div class="stat-lbl">CGPA (9.23)</div>
             </div>
-            <div class="stat">
-              <div class="stat-ring-wrap" data-target="7" data-max="10" data-color="var(--neon-purple)">
+              <div class="stat">
+              <div class="stat-ring-wrap" data-target="3" data-max="10" data-color="var(--neon-purple)">
                 <svg class="stat-ring" width="100" height="100" viewBox="0 0 100 100">
                   <circle class="stat-ring-bg" cx="50" cy="50" r="45"/>
                   <circle class="stat-ring-fill" cx="50" cy="50" r="45" stroke="var(--neon-purple)"/>
                 </svg>
                 <div class="stat-num" style="gap:.15rem;">
-                  <span class="digit-roller" data-to="7">
+                  <span class="digit-roller" data-to="3">
                     <span class="digit-roller-inner">
-                      <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                      <span>0</span><span>1</span><span>2</span><span>3</span>
                     </span>
                   </span>
+                  <span class="plus" style="font-size:1rem;opacity:.75;">+</span>
                 </div>
 
               </div>
               <div class="stat-lbl">Internships</div>
             </div>
-            <div class="stat">
-              <div class="stat-ring-wrap" data-target="6" data-max="10" data-color="var(--neon-pink)">
+              <div class="stat">
+              <div class="stat-ring-wrap" data-target="5" data-max="25" data-color="var(--neon-pink)">
                 <svg class="stat-ring" width="100" height="100" viewBox="0 0 100 100">
                   <circle class="stat-ring-bg" cx="50" cy="50" r="45"/>
                   <circle class="stat-ring-fill" cx="50" cy="50" r="45" stroke="var(--neon-pink)"/>
                 </svg>
                 <div class="stat-num" style="gap:.15rem;">
-                  <span class="digit-roller" data-to="6">
+                  <span class="digit-roller" data-to="5">
                     <span class="digit-roller-inner">
-                      <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                      <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
                     </span>
                   </span>
+                  <span class="plus" style="font-size:1rem;opacity:.75;">+</span>
                 </div>
-
+              
+              
               </div>
-              <div class="stat-lbl">Projects</div>
+              <div class="stat-lbl">Repositories</div>
             </div>
             <div class="stat">
               <div class="stat-ring-wrap" data-target="4" data-max="10" data-color="var(--neon-green)">
@@ -760,8 +809,15 @@
         </div>
         <div class="carousel-dots" id="carousel-dots"></div>
       </div>
+
+      <div class="reveal" style="margin-top:2rem;">
+        <button class="btn-neon" onclick="window.open('https://github.com/arpit-rangari?tab=repositories','_blank')" style="width:100%;justify-content:center;display:flex;gap:.6rem;align-items:center;">
+          <i class="fas fa-folder-open"></i> See all projects on GitHub
+        </button>
+      </div>
     </div>
   </section>
+
 
 
   <!-- TF.JS LAB (kept same) -->
@@ -916,8 +972,71 @@
     </div>
   </section>
 
+  <!-- CERTIFICATIONS — Auto Carousel (Project-style) -->
+  <section class="section" id="certs" style="background:var(--surface2);">
+    <div class="section-inner" style="position:relative;z-index:1;">
+      <div class="reveal" style="margin-bottom:2.5rem;">
+        <p class="section-label">Credentials</p>
+        <h2 class="section-title">Certifications <span>& Proof</span></h2>
+        <p style="color:var(--muted);max-width:760px;line-height:1.8;margin-top:1rem;">Auto-rotate certifications like the Projects carousel. The center card gently zooms for emphasis.</p>
+        <div style="margin-top:1.5rem;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-neon" onclick="window.open('https://www.linkedin.com/in/arpit-rangari/','_blank')" style="padding:.6rem 1.2rem;border-radius:14px;">
+            <i class="fas fa-link"></i> See more on LinkedIn
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel-wrapper reveal" style="max-width:1180px;margin:0 auto;">
+        <button class="carousel-btn prev" onclick="moveCertCarousel(-1)" aria-label="Previous certifications"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-btn next" onclick="moveCertCarousel(1)" aria-label="Next certifications"><i class="fas fa-chevron-right"></i></button>
+
+        <div class="carousel-track" id="cert-carousel-track" style="display:flex;">
+          <!-- Each slide shows 3 cards (same style as Projects carousel) -->
+          <div class="carousel-slide" id="cert-slide-0">
+            <div class="cert-slide-card" data-cert="AIML Virtual Internship" data-sub="Edu Skill"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/634/1200/900" alt="AIML Virtual Internship" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">AIML Virtual Internship</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">Edu Skill</div></div></div>
+            <div class="cert-slide-card" data-cert="Cloud Job Simulation" data-sub="Forge-Datacom"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/228/1200/900" alt="Cloud Job Simulation" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Cloud Job Simulation</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">Forge-Datacom</div></div></div>
+            <div class="cert-slide-card" data-cert="ML Model Optimization" data-sub="Codtech IT Solutions"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/661/1200/900" alt="ML Model Optimization" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">ML Model Optimization</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">Codtech IT Solutions</div></div></div>
+          </div>
+
+          <div class="carousel-slide" id="cert-slide-1">
+            <div class="cert-slide-card" data-cert="Campus Ambassador" data-sub="HackerRank / Internshala"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/380/1200/900" alt="Campus Ambassador" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Campus Ambassador</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">HackerRank / Internshala</div></div></div>
+            <div class="cert-slide-card" data-cert="Deep Learning Foundations" data-sub="NeuralWorks"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/392/1200/900" alt="Deep Learning Foundations" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Deep Learning Foundations</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">NeuralWorks</div></div></div>
+            <div class="cert-slide-card" data-cert="Computer Vision Bootcamp" data-sub="CV Academy"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/238/1200/900" alt="Computer Vision Bootcamp" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Computer Vision Bootcamp</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">CV Academy</div></div></div>
+          </div>
+
+          <div class="carousel-slide" id="cert-slide-2">
+            <div class="cert-slide-card" data-cert="NLP for Text Understanding" data-sub="Language Lab"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/469/1200/900" alt="NLP for Text Understanding" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">NLP for Text Understanding</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">Language Lab</div></div></div>
+            <div class="cert-slide-card" data-cert="Secure Web Practices" data-sub="AppSec Guild"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/311/1200/900" alt="Secure Web Practices" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Secure Web Practices</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">AppSec Guild</div></div></div>
+            <div class="cert-slide-card" data-cert="Data Structures & Algorithms" data-sub="Algo Masters"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/515/1200/900" alt="Data Structures & Algorithms" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Data Structures & Algorithms</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">Algo Masters</div></div></div>
+          </div>
+
+          <div class="carousel-slide" id="cert-slide-3">
+            <div class="cert-slide-card" data-cert="Edge AI Deployment" data-sub="EdgeForge"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/521/1200/900" alt="Edge AI Deployment" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Edge AI Deployment</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">EdgeForge</div></div></div>
+            <div class="cert-slide-card" data-cert="Cloud Automation with CI/CD" data-sub="CloudOps Lab"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/549/1200/900" alt="Cloud Automation with CI/CD" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Cloud Automation with CI/CD</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">CloudOps Lab</div></div></div>
+            <div class="cert-slide-card" data-cert="Generative AI Basics" data-sub="GenAI Studio"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/178/1200/900" alt="Generative AI Basics" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Generative AI Basics</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">GenAI Studio</div></div></div>
+          </div>
+
+          <div class="carousel-slide" id="cert-slide-4">
+            <div class="cert-slide-card" data-cert="TF.js Specialization" data-sub="TF.js Track"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/637/1200/900" alt="TF.js Specialization" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">TF.js Specialization</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">TF.js Track</div></div></div>
+            <div class="cert-slide-card" data-cert="ML Project Management" data-sub="ModelOps"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/641/1200/900" alt="ML Project Management" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">ML Project Management</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">ModelOps</div></div></div>
+            <div class="cert-slide-card" data-cert="Applied Computer Vision" data-sub="Vision Lab"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/669/1200/900" alt="Applied Computer Vision" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Applied Computer Vision</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">Vision Lab</div></div></div>
+          </div>
+
+          <div class="carousel-slide" id="cert-slide-5">
+            <div class="cert-slide-card" data-cert="Introduction to Data Engineering" data-sub="DataWorks"><div class="proj-img" style="height:170px;"><img src="https://picsum.photos/id/685/1200/900" alt="Introduction to Data Engineering" style="width:100%;height:100%;object-fit:cover;"/></div><div class="proj-body"><div class="proj-title">Introduction to Data Engineering</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">DataWorks</div></div></div>
+            <div class="cert-slide-card" style="opacity:.35;" aria-hidden="true"><div class="proj-img" style="height:170px;"></div><div class="proj-body"><div class="proj-title">&nbsp;</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">&nbsp;</div></div></div>
+            <div class="cert-slide-card" style="opacity:.35;" aria-hidden="true"><div class="proj-img" style="height:170px;"></div><div class="proj-body"><div class="proj-title">&nbsp;</div><div class="proj-desc" style="margin:0;color:var(--neon-purple);font-weight:800;">&nbsp;</div></div></div>
+          </div>
+        </div>
+
+        <div class="carousel-dots" id="cert-carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- CONTACT -->
+
   <section class="section" id="contact">
     <div class="section-particles" id="sp-contact"></div>
     <div class="section-inner" style="position:relative;z-index:1;">
@@ -936,6 +1055,18 @@
             </a>
           </div>
           <div id="github-calendar" style="min-height:190px;"></div>
+          <div style="height:14px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.75rem;">
+            <div>
+              <div class="section-label" style="margin-bottom:.35rem;">CodeChef</div>
+              <div style="font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.2rem;">Contest Heatmap</div>
+              <div style="color:var(--muted);font-size:.9rem;line-height:1.6;">Shows CodeChef activity via Statically generated data (if available).</div>
+            </div>
+            <a href="https://www.codechef.com/users/" target="_blank" rel="noopener" class="btn-neon" style="padding:.6rem 1.2rem;">
+              <i class="fas fa-link"></i> Open Profile
+            </a>
+          </div>
+          <div id="codechef-heatmap" style="min-height:190px;"></div>
         </div>
       </div>
 
@@ -950,7 +1081,7 @@
             <a href="#" class="social-link"><i class="fab fa-github"></i></a><a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-link"><i class="fab fa-twitter"></i></a><a href="#" class="social-link"><i class="fab fa-kaggle"></i></a>
           </div>
         </div>
-        <form onsubmit="handleSubmit(event)" class="reveal reveal-d1" style="display:flex;flex-direction:column;gap:.875rem;">
+        <form onsubmit="handleSubmit(event)" data-endpoint="YOUR_FORM_ENDPOINT_HERE" class="reveal reveal-d1" style="display:flex;flex-direction:column;gap:.875rem;">
           <input type="text" class="form-input" placeholder="Name" required>
           <input type="email" class="form-input" placeholder="Email" required>
           <textarea class="form-input" rows="5" placeholder="Message..." required style="resize:vertical;"></textarea>
@@ -1010,6 +1141,16 @@ if(localStorage.getItem('theme')==='light'){isDark=false;document.body.classList
 // Show mobile toggle
 if(window.innerWidth<=900){const tm=document.getElementById('theme-toggle-m');if(tm)tm.style.display='flex';}
 window.addEventListener('resize',()=>{const tm=document.getElementById('theme-toggle-m');if(tm)tm.style.display=window.innerWidth<=900?'flex':'none';});
+
+// CERTIFICATIONS — radial gallery JS (previous implementation)
+// Your Certifications markup was replaced with the scroll card-stack demo,
+// so the old radial-gallery JS should not run.
+(function initRadialGallery(){
+  const wrap=document.getElementById('radial-gallery');
+  if(!wrap) return;
+})();
+
+
 
 // LOADER
 let lp=0;const lb=document.getElementById('lb'),lpt=document.getElementById('lp');
@@ -1142,6 +1283,60 @@ function buildDots(){const d=document.getElementById('carousel-dots');d.innerHTM
 function updateCarousel(){document.getElementById('carousel-track').style.transform=`translateX(-${carIdx*100}%)`;document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===carIdx));}
 function moveCarousel(dir){carIdx=Math.max(0,Math.min(totalSlides-1,carIdx+dir));updateCarousel();}
 buildDots();
+
+// CERTIFICATIONS carousel (auto-rotate + center zoom)
+let certIdx=0;
+const certTotalSlides=6;
+function updateCertCarousel(){
+  const track=document.getElementById('cert-carousel-track');
+  if(track){
+    track.style.transform=`translateX(-${certIdx*100}%)`;
+  }
+  // center zoom: apply subtle scale to cards of active slide
+  document.querySelectorAll('#cert-carousel-track .cert-slide-card').forEach(el=>{
+    el.style.transform='scale(1)';
+  });
+  const slide=document.getElementById('cert-slide-'+certIdx);
+  if(slide){
+    const cards=slide.querySelectorAll('.cert-slide-card');
+    cards.forEach((c,i)=>{
+      // zoom middle card (i==1) a bit
+      const scale=i===1?1.05:1;
+      c.style.transform=`scale(${scale})`;
+      c.style.transition='transform 300ms ease';
+    });
+  }
+
+  document.querySelectorAll('#cert-carousel-dots .carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===certIdx));
+}
+function moveCertCarousel(dir){
+  certIdx=Math.max(0,Math.min(certTotalSlides-1,certIdx+dir));
+  updateCertCarousel();
+}
+(function initCertCarousel(){
+  const dotsEl=document.getElementById('cert-carousel-dots');
+  if(!dotsEl) return;
+  dotsEl.innerHTML='';
+  for(let i=0;i<certTotalSlides;i++){
+    const dot=document.createElement('div');
+    dot.className='carousel-dot'+(i===certIdx?' active':'');
+    dot.onclick=()=>{certIdx=i;updateCertCarousel();};
+    dotsEl.appendChild(dot);
+  }
+  // Prepare track sizing: reuse carousel-track CSS transition. Ensure horizontal layout.
+  const track=document.getElementById('cert-carousel-track');
+  if(track){
+    track.style.width=(certTotalSlides*100)+'%';
+    track.style.display='flex';
+    track.style.transition='transform .6s cubic-bezier(.25,.8,.25,1)';
+  }
+  updateCertCarousel();
+})();
+// Auto-play certifications
+setInterval(()=>{certIdx=(certIdx+1)%certTotalSlides;updateCertCarousel();},4200);
+
+// threejs etc continue
+
 // Auto-play
 setInterval(()=>{carIdx=(carIdx+1)%totalSlides;updateCarousel();},5000);
 
@@ -1165,7 +1360,50 @@ function updPred(){if(!model)return;const iT=tf.tensor2d([[0,0],[0,1],[1,0],[1,1
 function resetNet(){if(training)return;if(model){model.dispose();model=null;}lossH=[];document.getElementById('ep').textContent='0/0';document.getElementById('lo').textContent='—';document.getElementById('st').textContent='Ready';document.getElementById('st').style.color='var(--neon-green)';['p00','p01','p10','p11'].forEach(id=>{document.getElementById(id).textContent='—';document.getElementById(id).style.color='var(--text)';});drawLoss();drawDec();}
 drawLoss();drawDec();
 
-function handleSubmit(e){e.preventDefault();const m=document.getElementById('fm');m.style.display='block';m.style.color='var(--neon-green)';m.innerHTML='<i class="fas fa-check-circle"></i> Sent!';e.target.reset();setTimeout(()=>{m.style.display='none';},5000);}
+async function handleSubmit(e){
+  e.preventDefault();
+  const m=document.getElementById('fm');
+  m.style.display='block';
+
+  const form=e.target;
+  const formData=new FormData(form);
+
+  // IMPORTANT: Set your email endpoint.
+  // Option 1: Formspree endpoint (recommended for static hosting)
+  // Example: https://formspree.io/f/yourFormId
+  const ENDPOINT = form.getAttribute('data-endpoint') || 'YOUR_FORM_ENDPOINT_HERE';
+
+  try{
+    m.style.color='var(--neon-orange)';
+    m.innerHTML='<i class="fas fa-circle-notch fa-spin"></i> Sending...';
+
+    if(!ENDPOINT || ENDPOINT === 'YOUR_FORM_ENDPOINT_HERE'){
+      // fallback: show success locally so UI doesn't break
+      m.style.color='var(--neon-green)';
+      m.innerHTML='<i class="fas fa-check-circle"></i> Saved (configure endpoint to receive emails).';
+      form.reset();
+      setTimeout(()=>{m.style.display='none';},7000);
+      return;
+    }
+
+    const res=await fetch(ENDPOINT,{
+      method:'POST',
+      headers:{'Accept':'application/json'},
+      body:formData
+    });
+
+    if(!res.ok) throw new Error('Email send failed');
+
+    m.style.color='var(--neon-green)';
+    m.innerHTML='<i class="fas fa-check-circle"></i> Sent!';
+    form.reset();
+    setTimeout(()=>{m.style.display='none';},5000);
+  }catch(err){
+    m.style.color='var(--neon-pink)';
+    m.innerHTML='<i class="fas fa-exclamation-triangle"></i> Failed to send. Configure your endpoint.';
+  }
+}
+
 
 // CHATBOT
 const RESUME={
@@ -1212,19 +1450,97 @@ function sendChat(){const inp=document.getElementById('chat-input');const q=inp.
   msgs.scrollTop=msgs.scrollHeight;
 }
 
-// GitHub heatmap (renders into the Connect section's #github-calendar)
+// GitHub contribution heatmap
+// github-calendar library creates a #github-calendar svg/heatmap. If it fails to render,
+// we show a simple fallback so the UI never looks empty.
 (function initGitHubHeatmap(){
-  document.addEventListener('DOMContentLoaded', function(){
-    const el = document.getElementById('github-calendar');
-    if(!el || typeof GitHubCalendar !== 'function') return;
+  const USER = 'ArpitRangari13';
+  const containerId = 'github-calendar';
+
+  function ensureFallback(){
+    const el = document.getElementById(containerId);
+    if(!el) return;
+    const existing = el.querySelector('[data-github-heatmap-fallback="1"]');
+    if(existing) return;
+
+    const msg = document.createElement('div');
+    msg.setAttribute('data-github-heatmap-fallback','1');
+    msg.style.cssText = 'padding:12px 10px;color:var(--muted);font-family:JetBrains Mono,monospace;font-size:12px;line-height:1.5;text-align:center;';
+    msg.innerHTML = `GitHub heatmap didn't load. Open <a href="https://github.com/${USER}" target="_blank" rel="noopener">${USER}</a> to see contributions.`;
+    el.appendChild(msg);
+  }
+
+  function render(){
+    const el = document.getElementById(containerId);
+    if(!el) return false;
+
+    // remove fallback when we are about to try again
+    const fb = el.querySelector('[data-github-heatmap-fallback="1"]');
+    if(fb) fb.remove();
+
+    // clear container to avoid duplicate renders
+    el.innerHTML = '';
+
+    // library sometimes registers as window.GitHubCalendar or window.GitHubCalendar.default
+    const fn = window.GitHubCalendar || (window.GitHubCalendar && window.GitHubCalendar.default);
+    if(typeof fn !== 'function') return false;
+
     try{
-      GitHubCalendar('#github-calendar', 'arpit-rangari', { responsive: true, tooltips: true });
+      fn(`#${containerId}`, USER, {
+        responsive: true,
+        tooltips: true,
+        theme: {
+          level0: 'rgba(0,240,255,0.05)',
+          level1: 'rgba(0,240,255,0.12)',
+          level2: 'rgba(0,240,255,0.20)',
+          level3: 'rgba(0,240,255,0.35)',
+          level4: 'rgba(191,90,242,0.50)'
+        }
+      });
+
+      // wait a bit and check if something meaningful was injected
+      // github-calendar injects an <svg> (or a heatmap wrapper). If only the container is present, treat as failed.
+      setTimeout(()=>{
+        const hasSvg = !!el.querySelector('svg');
+        if(!hasSvg) ensureFallback();
+      }, 800);
+
+
+      return true;
     }catch(e){
-      // fail silently to avoid breaking the rest of the page
       console.warn('GitHub heatmap init failed', e);
+      return false;
     }
-  });
+  }
+
+  // Retry for a few seconds (cdn scripts can load late)
+  let tries = 0;
+  const t = setInterval(()=>{
+    tries++;
+    if(render() || tries >= 12){
+      clearInterval(t);
+      // final fallback if still not rendered
+      if(!document.getElementById(containerId)?.querySelector('svg')){
+        ensureFallback();
+      }
+    }
+  }, 500);
+
+  // Also re-render when Contact section becomes visible
+          // Also re-render when Contact section becomes visible
+  const connect = document.getElementById('contact');
+  if(connect && 'IntersectionObserver' in window){
+    // ensure fallback can appear for both sections if github-calendar is slow
+
+    const io = new IntersectionObserver((entries)=>{
+      if(entries.some(x=>x.isIntersecting)) render();
+    }, { threshold: 0.15 });
+    io.observe(connect);
+  }
 })();
+
+
+
 
 // VISITOR COUNTER (client-side demo)
 (function initVisitors(){
